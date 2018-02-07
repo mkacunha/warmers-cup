@@ -1,8 +1,8 @@
 package br.com.mkacunha.warmerscup.warmerscupserver.domain.team;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.UUID;
 
 
@@ -12,13 +12,17 @@ public class Team {
     @Id
     private String id;
 
-    private  String name;
+    @Column(nullable = false)
+    private String name;
 
+    @Column(nullable = false)
     private String coach;
 
+    @Column(nullable = false)
     private String urlFile;
 
-    private Integer numberPlayers;
+    @Column(nullable = false)
+    private Integer numberPlayers = 0;
 
     public Team() {
         this.id = UUID.randomUUID().toString();
