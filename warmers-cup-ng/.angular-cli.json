@@ -23,7 +23,6 @@
         "./assets/material/material.min.css"
       ],
       "scripts": [
-        "./assets/material/material.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

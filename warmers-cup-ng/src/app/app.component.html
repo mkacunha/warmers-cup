@@ -3,5 +3,7 @@
 
 <img *ngIf="fileUrl" [src]="fileUrl" alt="gif">
 
-
-<router-outlet></router-outlet>
+<main class="mdl-main mdl-color--grey-100 mdl-color-text--grey-700 mdl-base" style="background-color: #f5f5f5 !important;">
+    <app-menu></app-menu>
+    <router-outlet></router-outlet>
+</main>

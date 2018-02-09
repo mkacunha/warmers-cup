@@ -1,0 +1,17 @@
+.mdl-layout__tab-bar {
+    padding: 0;
+    padding-left: 16px;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+
+.mdl-layout__tab-bar .mdl-layout__tab {
+    height: 64px;
+    line-height: 64px;
+}
+
+.mdl-layout__tab.is-active {
+    color: rgb(255, 255, 255);
+    border-bottom: solid;
+}
