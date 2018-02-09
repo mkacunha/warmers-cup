@@ -1,10 +1,9 @@
 <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
-    
-    <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-      <a href="#overview" class="mdl-layout__tab is-active">Home</a>
-      <a href="#features" class="mdl-layout__tab">Times</a>
-      <a href="#features" class="mdl-layout__tab">Jogadores</a>
-      <a href="#features" class="mdl-layout__tab">Contagem</a>
-      <a href="#features" class="mdl-layout__tab">Apresentação</a>
-    </div>
-  </header>
+  <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+    <a [routerLink]="['/home']" routerLinkActive="is-active" class="mdl-layout__tab">Home</a>
+    <a [routerLink]="['/team']" routerLinkActive="is-active" class="mdl-layout__tab">Times</a>
+    <a [routerLink]="['/player']" routerLinkActive="is-active" class="mdl-layout__tab">Jogadores</a>
+    <a [routerLink]="['/score']" routerLinkActive="is-active" class="mdl-layout__tab">Contagem</a>
+    <a [routerLink]="['/presentation']" routerLinkActive="is-active" class="mdl-layout__tab">Apresentação</a>
+  </div>
+</header>
