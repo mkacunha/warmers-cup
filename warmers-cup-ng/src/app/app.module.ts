@@ -1,3 +1,4 @@
+import { MenuModule } from './menu/menu.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -5,7 +6,6 @@ import { routing } from './app.routes';
 
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { TeamComponent } from './team/team.component';
 import { PlayerComponent } from './player/player.component';
@@ -16,7 +16,6 @@ import { PresentationComponent } from './presentation/presentation.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
     HomeComponent,
     TeamComponent,
     PlayerComponent,
@@ -25,7 +24,8 @@ import { PresentationComponent } from './presentation/presentation.component';
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    MenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
