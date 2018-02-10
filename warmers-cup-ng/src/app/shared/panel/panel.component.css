@@ -1,0 +1,8 @@
+section {
+    margin: 50px 0 30px 0;
+}
+
+.mdl-card {
+    min-height: 0 !important;
+    padding: 10px 30px !important;
+}

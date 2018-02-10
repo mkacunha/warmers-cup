@@ -3,7 +3,7 @@
 
 <img *ngIf="fileUrl" [src]="fileUrl" alt="gif">
 
-<main class="mdl-main mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-    <app-menu *ngIf="showMenu"></app-menu>
+<app-menu *ngIf="showMenu"></app-menu>
+<main class="container mdl-main mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <router-outlet></router-outlet>
 </main>

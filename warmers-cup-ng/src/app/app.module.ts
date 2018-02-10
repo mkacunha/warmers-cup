@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { MenuModule } from './menu/menu.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,15 +18,16 @@ import { PresentationComponent } from './presentation/presentation.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    TeamComponent,
     PlayerComponent,
     ScoreComponent,
-    PresentationComponent
+    PresentationComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
     routing,
-    MenuModule
+    MenuModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
