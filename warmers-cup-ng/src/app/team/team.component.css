@@ -1,0 +1,33 @@
+section {
+    background: #fff;
+}
+
+.btn-upload {
+    padding: 20px 0;
+}
+
+.label-file {
+    font-weight: bold;
+}
+
+.label-required {
+    font-style: italic;
+}
+
+.file-invalid {
+    color: #d50000;
+}
+
+.form-header {
+    display: inline-block;
+}
+
+.btn-form {
+    width: 150px;
+    margin: 10px !important;
+    float: right;
+}
+
+.btn-upload-gif {
+    margin-top: 20px;
+}

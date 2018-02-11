@@ -2,6 +2,7 @@ import { SharedModule } from './shared/shared.module';
 import { MenuModule } from './menu/menu.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { routing } from './app.routes';
 
@@ -27,7 +28,8 @@ import { PresentationComponent } from './presentation/presentation.component';
     BrowserModule,
     routing,
     MenuModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,35 +1,111 @@
-<app-panel title="Cadastro de Times">
-  <form action="#">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="sample3">
-      <label class="mdl-textfield__label" for="sample3">Text...</label>
+<form #form="ngForm">
+  <section class="panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+    <div class="mdl-card mdl-cell mdl-cell--12-col">
+      <h4>Cadastro de Seleções</h4>
     </div>
-  </form>
-</app-panel>
+
+    <div class="mdl-card mdl-cell mdl-cell--6-col">
+      <div class="mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input name="selecao" class="mdl-textfield__input" type="text" id="selecao" [(ngModel)]="team.name" required>
+        <label class="mdl-textfield__label" for="sample3">Seleção</label>
+      </div>
+
+      <div class="mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input name="tecnico" class="mdl-textfield__input" type="text" id="tecnico" [(ngModel)]="team.coach" required>
+        <label class="mdl-textfield__label" for="sample3">Técnico</label>
+      </div>
+    </div>
+
+    <div class="mdl-card mdl-cell mdl-cell--6-col" [ngClass]="{'file-invalid': !team.gifName}">
+      <div class="mdl-cell--12-col">
+
+        <section class="mdl-grid mdl-grid--no-spacing">
+          <div class="mdl-cell--10-col btn-upload-gif">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="gifFile.click()" [ngClass]="{'file-invalid': !team.gifName}">
+              <i class="material-icons">file_upload</i>
+            </button>
+            <label>Gif: </label>
+            <label class="label-file">{{team.gifName}} </label>
+            <input name="gif" style="display: none" type="file" (change)="onChangeGif($event)" #gifFile required>
+          </div>
+
+          <div class="mdl-cell--2-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input name="tecnico" class="mdl-textfield__input" type="color" id="tecnico" [(ngModel)]="team.gifBorderColor" required>
+            <label class="mdl-textfield__label" for="sample3">Cor da Borda Gif</label>
+          </div>
+        </section>
+      </div>
+
+
+
+      <div class="mdl-cell--12-col btn-upload" [ngClass]="{'file-invalid': !team.backgroundName}">
+        <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="backgroundFile.click()" [ngClass]="{'file-invalid': !team.backgroundName}">
+          <i class="material-icons">file_upload</i>
+        </button>
+        <label>Background: </label>
+        <label class="label-file">{{team.backgroundName}} </label>
+        <input name="background" style="display: none" type="file" (change)="onChangeBackground($event)" #backgroundFile required>
+      </div>
+    </div>
+
+    <div class="form-header mdl-card mdl-cell mdl-cell--12-col">
+      <label class="label-required">Todos os campos são obrigatórios</label>
+
+      <button (click)="onClickSave()" class="btn-form  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+        [disabled]="!form.valid || !team.backgroundName || !team.gifName">
+        Salvar
+      </button>
+
+      <button (click)="onClickCancel()" class="btn-form  mdl-button mdl-js-button mdl-button--raised">
+        Cancelar
+      </button>
+    </div>
+
+  </section>
+</form>
+
+
+<pre>{{team | json}}</pre> {{form.valid | json}}
 
 <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp with-100">
   <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric">Material</th>
-      <th>Quantity</th>
-      <th>Unit price</th>
+      <th class="mdl-data-table__cell--non-numeric">Seleção</th>
+      <th class="mdl-data-table__cell--non-numeric">Técnico</th>
+      <th>Quantidade de jogadores</th>
+      <th class="text-center">Gif</th>
+      <th class="text-center">Background</th>
+      <th class="text-center">Acões</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-      <td>25</td>
+
+      <td class="mdl-data-table__cell--non-numeric">25</td>
+
       <td>$2.90</td>
-    </tr>
-    <tr>
-      <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-      <td>50</td>
-      <td>$1.25</td>
-    </tr>
-    <tr>
-      <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-      <td>10</td>
-      <td>$2.35</td>
+
+      <td class="text-center">
+        <a href="">
+          <span class="material-icons">photo</span>
+        </a>
+      </td>
+
+      <td class="text-center">
+        <a href="">
+          <span class="material-icons">photo</span>
+        </a>
+      </td>
+
+      <td class="text-center">
+        <a href="">
+          <span class="material-icons">mode_edit</span>
+        </a>
+        <a href="">
+          <span class="material-icons">delete</span>
+        </a>
+      </td>
     </tr>
   </tbody>
 </table>
