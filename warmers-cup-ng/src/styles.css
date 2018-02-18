@@ -61,3 +61,7 @@ input.ng-invalid.ng-touched:focus {
     color: #d50000;
     border-bottom: solid 1.5px !important;
 }
+
+.toast-error {
+    background-color: #D32F2F !important;
+}

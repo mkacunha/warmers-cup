@@ -28,6 +28,7 @@ export class TeamComponent implements OnInit {
   onClickCancel() {
     this.isShowForm = false;
     this.team = new Team();
+    this.retrieveTeams();
   }
 
   onClickSave() {
@@ -49,6 +50,10 @@ export class TeamComponent implements OnInit {
       .afterClosed()
       .take(1)
       .subscribe(result => this.handleModalDelete(result, id));
+  }
+
+  showImage(url: string) {
+    this._dialog.open(ModalShowImageComponent, { data: { url: url } });
   }
 
   private handleModalDelete(resModal: TeamResultModal, id: string) {
@@ -81,7 +86,7 @@ export class TeamComponent implements OnInit {
 
 @Component({
   selector: 'app-modal-delete',
-  templateUrl: './team-delete.modal.html',
+  templateUrl: './modals/team-delete.modal.html'
 })
 export class ModalDeleteComponent implements OnInit {
 
@@ -95,6 +100,25 @@ export class ModalDeleteComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close(TeamResultModal.NO);
+  }
+
+  onYesClick() {
+    this.dialogRef.close(TeamResultModal.YES);
+  }
+
+}
+
+@Component({
+  selector: 'app-show-image-modal',
+  templateUrl: './modals/team-show-image.modal.html',
+})
+export class ModalShowImageComponent implements OnInit {
+
+  constructor(
+    public dialogRef: MatDialogRef<ModalDeleteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  ngOnInit() {
   }
 
   onYesClick() {

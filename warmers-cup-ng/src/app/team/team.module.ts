@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TeamComponent, ModalDeleteComponent } from './team.component';
+import { TeamComponent, ModalDeleteComponent, ModalShowImageComponent } from './team.component';
 import { TeamService } from './team.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,15 +23,16 @@ import 'rxjs/add/operator/take';
   ],
   declarations: [
     TeamComponent,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    ModalShowImageComponent
   ],
   exports: [
-    TeamComponent,
-    ModalDeleteComponent
+    TeamComponent
   ],
   entryComponents: [
     TeamComponent,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    ModalShowImageComponent
   ],
   providers: [
     TeamService
