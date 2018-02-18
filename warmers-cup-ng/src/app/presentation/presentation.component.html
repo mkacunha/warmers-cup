@@ -1,3 +1,5 @@
-<p>
-  presentation works!
-</p>
+<input #inputHash [(ngModel)]="hash" (ngModelChange)="onHashChange()" type="text">
+
+<h1 *ngIf="isSelectTeam">Selecionado time...</h1>
+
+<pre *ngIf="isShowTeam">{{team | json}}</pre>

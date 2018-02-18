@@ -1,3 +1,39 @@
-<p>
-  player works!
-</p>
+<main class="container">
+  <form #form="ngForm">
+    <section class="panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+      <div class="mdl-card mdl-cell mdl-cell--12-col">
+        <h4>Jogadores</h4>
+      </div>
+
+      <div class="mdl-card mdl-cell mdl-cell--6-col">
+        <label for="selecao">Filtrar por Jogador</label>
+        <input name="selecao" class="mdl-textfield__input" type="text" id="selecao" [(ngModel)]="filter.playerName">
+      </div>
+
+      <div class="mdl-card mdl-cell mdl-cell--6-col">
+        <label for="tecnico">Filtrar por Seleção</label>
+        <select name="tecnico" class="mdl-textfield__input" type="text" id="tecnico" [(ngModel)]="filter.teamName">
+          <option value=""></option>
+          <option *ngFor="let team of teams" [value]="team.name">{{team.name}}</option>
+        </select>
+      </div>
+    </section>
+  </form>
+
+  <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp with-100">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Jogador</th>
+        <th class="mdl-data-table__cell--non-numeric">Seleção</th>
+        <th class="mdl-data-table__cell--non-numeric">E-mail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of playersFiltered()">
+        <td class="mdl-data-table__cell--non-numeric">{{player.name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{player.teamName}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{player.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</main>

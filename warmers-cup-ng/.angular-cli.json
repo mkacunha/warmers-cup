@@ -20,11 +20,11 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "./assets/material/material.min.css"
+        "./assets/material/material.min.css",
+        "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+        "../node_modules/ngx-toastr/toastr.css"
       ],
-      "scripts": [
-        "./assets/material/material.min.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

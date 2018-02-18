@@ -6,8 +6,12 @@ section {
     padding: 20px 0;
 }
 
-.label-file {
+.label-file-name {
     font-weight: bold;
+}
+
+.label-file {
+    font-size: 12px;
 }
 
 .label-required {
@@ -18,7 +22,7 @@ section {
     color: #d50000;
 }
 
-.form-header {
+.form-footer {
     display: inline-block;
 }
 
@@ -28,6 +32,9 @@ section {
     float: right;
 }
 
-.btn-upload-gif {
-    margin-top: 20px;
+.btn-new {
+    width: 150px;
+    position: absolute;
+    top: 35px;
+    right: 35px;
 }
