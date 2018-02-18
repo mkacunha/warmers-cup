@@ -1,0 +1,48 @@
+.input-hash {
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
+    position: absolute;
+}
+
+.gif-position {
+    width: 300px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    border: solid 40px;
+}
+
+.gif-position>img {
+    width: 100%;
+    height: 100%;
+}
+
+.player-name {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: black;
+}
+
+.coach-label {
+    position: absolute;
+    left: 50%;
+    width: 200px;
+    height: 50px;
+    margin-left: -100px;
+    color: white;
+    top: -26px;
+    text-align: center;
+}
+
+.coach-name {
+    position: absolute;
+    left: 50%;
+    width: 200px;
+    height: 50px;
+    margin-left: -100px;
+    bottom: -60px;
+    color: white;
+    text-align: center;
+}

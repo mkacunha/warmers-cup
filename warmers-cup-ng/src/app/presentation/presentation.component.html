@@ -1,5 +1,12 @@
-<input #inputHash [(ngModel)]="hash" (ngModelChange)="onHashChange()" type="text">
+<input class="input-hash" #inputHash [(ngModel)]="hash" (ngModelChange)="onHashChange()" type="text">
 
-<h1 *ngIf="isSelectTeam">Selecionado time...</h1>
+<h1 *ngIf="isSelectTeam">Selecionando time...</h1>
 
-<pre *ngIf="isShowTeam">{{team | json}}</pre>
+<figure *ngIf="isShowTeam" class="gif-position" [style.border-color]="data?.team?.gifBorderColor">
+    <figcaption class="coach-label">TÉCNICO</figcaption>
+    <img #teamGif [src]="data?.team?.urlGif" alt="Gif do técnico">
+    <figcaption class="coach-name">{{data.team.coach}}</figcaption>
+</figure>
+
+
+<h1 *ngIf="isShowTeam" class="player-name">{{data.player.name}}</h1>

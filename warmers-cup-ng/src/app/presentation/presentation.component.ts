@@ -1,5 +1,5 @@
 import { PresentationService } from './presentation.service';
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -10,9 +10,10 @@ import { Observable } from 'rxjs/Observable';
 export class PresentationComponent implements OnInit {
 
   @ViewChild('inputHash') inputHash;
+  @ViewChild('teamGif') teamGif: ElementRef;
 
   hash: string;
-  team: any;
+  data: any;
 
   isShowInput = true;
   isInitInput = false;
@@ -26,7 +27,6 @@ export class PresentationComponent implements OnInit {
   }
 
   onHashChange() {
-    // Observable.timer(2000).subscribe(() => console.log(this.hash));
     this.initObservableInput();
   }
 
@@ -42,7 +42,7 @@ export class PresentationComponent implements OnInit {
   }
 
   private initObservableShowTeam() {
-    Observable.timer(3000).take(1).subscribe(() => this.showInput());
+    Observable.timer(3000000000000).take(1).subscribe(() => this.showInput());
   }
 
   private selectTeam() {
@@ -51,8 +51,8 @@ export class PresentationComponent implements OnInit {
     this._service.selectTeam(this.hash).take(1).subscribe(res => this.showTeam(res));
   }
 
-  private showTeam(team: any) {
-    this.team = team;
+  private showTeam(res: any) {
+    this.data = res;
     this.isSelectTeam = false;
     this.isShowTeam = true;
     this.initObservableShowTeam();
@@ -64,6 +64,6 @@ export class PresentationComponent implements OnInit {
     this.isInitInput = false;
     this.inputFocus();
     this.hash = '';
-    this.team = {};
+    this.data = {};
   }
 }
