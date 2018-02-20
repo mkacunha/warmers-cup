@@ -1,7 +1,5 @@
 <input class="input-hash" #inputHash [(ngModel)]="hash" (ngModelChange)="onHashChange()" type="text">
 
-<h1 *ngIf="isSelectTeam">Selecionando time...</h1>
-
 <figure *ngIf="isShowTeam" class="gif-position" [style.border-color]="data?.team?.gifBorderColor">
     <figcaption class="coach-label">TÉCNICO</figcaption>
     <img #teamGif [src]="data?.team?.urlGif" alt="Gif do técnico">

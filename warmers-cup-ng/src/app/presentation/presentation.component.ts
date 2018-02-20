@@ -20,10 +20,16 @@ export class PresentationComponent implements OnInit {
   isSelectTeam = false;
   isShowTeam = false;
 
-  constructor(private _service: PresentationService) { }
+  private body: any;
+
+  constructor(private _service: PresentationService) {
+
+  }
 
   ngOnInit() {
+    this.body = document.getElementsByTagName('body')[0];
     this.inputFocus();
+    this.defaultBackground();
   }
 
   onHashChange() {
@@ -42,7 +48,7 @@ export class PresentationComponent implements OnInit {
   }
 
   private initObservableShowTeam() {
-    Observable.timer(3000000000000).take(1).subscribe(() => this.showInput());
+    Observable.timer(3000).take(1).subscribe(() => this.showInput());
   }
 
   private selectTeam() {
@@ -55,6 +61,7 @@ export class PresentationComponent implements OnInit {
     this.data = res;
     this.isSelectTeam = false;
     this.isShowTeam = true;
+    this.changeBackground(this.data.team.urlBackground);
     this.initObservableShowTeam();
   }
 
@@ -62,8 +69,18 @@ export class PresentationComponent implements OnInit {
     this.isShowTeam = false;
     this.isShowInput = true;
     this.isInitInput = false;
-    this.inputFocus();
     this.hash = '';
     this.data = {};
+    this.inputFocus();
+    this.defaultBackground();
+  }
+
+  private changeBackground(url: string) {
+    this.body.className = 'background-image';
+    this.body.style.backgroundImage = `url("${url}")`;
+  }
+
+  private defaultBackground() {
+    this.changeBackground('../assets/images/warmers-cup-background.gif');
   }
 }
