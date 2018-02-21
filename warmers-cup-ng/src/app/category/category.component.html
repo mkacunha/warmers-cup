@@ -1,3 +1,63 @@
-<p>
-  category works!
-</p>
+<main class="container">
+  <form #form="ngForm">
+    <section class="panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+      <div class="mdl-card mdl-cell mdl-cell--12-col">
+        <h4>Cadastro de Categorias</h4>
+        <button *ngIf="!isShowForm" (click)="onClickNew()" class="btn-new  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Novo
+        </button>
+      </div>
+
+      <div *ngIf="isShowForm" class="mdl-card mdl-cell mdl-cell--6-col">
+        <div class="mdl-cell--12-col mdl-textfield">
+          <label for="categoria">Categoria</label>
+          <input name="categoria" class="mdl-textfield__input" type="text" id="selecao" [(ngModel)]="category.name" required>
+        </div>
+
+        <div class="mdl-cell--12-col mdl-textfield">
+          <label for="measure">Pontuação</label>
+          <input name="measure" class="mdl-textfield__input" type="number" id="tecnico" [(ngModel)]="category.measure" required>
+        </div>
+      </div>
+
+      <div *ngIf="isShowForm" class="form-footer mdl-card mdl-cell mdl-cell--12-col">
+        <label class="label-required">Todos os campos são obrigatórios</label>
+
+        <button (click)="onClickSave()" class="btn-form  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+          [disabled]="!form.valid">
+          Salvar
+        </button>
+
+        <button (click)="onClickCancel()" class="btn-form  mdl-button mdl-js-button mdl-button--raised">
+          Cancelar
+        </button>
+      </div>
+    </section>
+  </form>
+
+  <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp with-100">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Categoria</th>
+        <th>Pontuação</th>
+        <th class="text-center">Acões</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td class="mdl-data-table__cell--non-numeric">{{category.name}}</td>
+
+        <td>{{category.measure}}</td>
+
+        <td class="text-center">
+          <a *ngIf="!isShowForm" (click)="onClickEdit(category)">
+            <span class="material-icons">mode_edit</span>
+          </a>
+          <a *ngIf="!isShowForm" mat-raised-button (click)="onClickDelete(category.id)">
+            <span class="material-icons">delete</span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</main>

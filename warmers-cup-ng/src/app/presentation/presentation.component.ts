@@ -1,5 +1,5 @@
 import { PresentationService } from './presentation.service';
-import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, ElementRef, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './presentation.component.html',
   styleUrls: ['./presentation.component.css']
 })
-export class PresentationComponent implements OnInit {
+export class PresentationComponent implements OnInit, OnDestroy {
 
   @ViewChild('inputHash') inputHash;
   @ViewChild('teamGif') teamGif: ElementRef;
@@ -30,6 +30,10 @@ export class PresentationComponent implements OnInit {
     this.body = document.getElementsByTagName('body')[0];
     this.inputFocus();
     this.defaultBackground();
+  }
+
+  ngOnDestroy() {
+    this.changeBackground(null);
   }
 
   onHashChange() {
@@ -76,8 +80,13 @@ export class PresentationComponent implements OnInit {
   }
 
   private changeBackground(url: string) {
-    this.body.className = 'background-image';
-    this.body.style.backgroundImage = `url("${url}")`;
+    if (url) {
+      this.body.className = 'background-image';
+      this.body.style.backgroundImage = `url("${url}")`;
+    } else {
+      this.body.className = '';
+      this.body.style.backgroundImage = '';
+    }
   }
 
   private defaultBackground() {

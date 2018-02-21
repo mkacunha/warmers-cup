@@ -1,0 +1,36 @@
+section {
+    background: #fff;
+}
+
+.label-file-name {
+    font-weight: bold;
+}
+
+.label-file {
+    font-size: 12px;
+}
+
+.label-required {
+    font-style: italic;
+}
+
+.file-invalid {
+    color: #d50000;
+}
+
+.form-footer {
+    display: inline-block;
+}
+
+.btn-form {
+    width: 150px;
+    margin: 10px !important;
+    float: right;
+}
+
+.btn-new {
+    width: 150px;
+    position: absolute;
+    top: 35px;
+    right: 35px;
+}
