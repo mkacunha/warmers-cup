@@ -16,6 +16,7 @@ import { ScoreComponent } from './score/score.component';
 
 
 import 'rxjs/Rx';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import 'rxjs/Rx';
     AppComponent,
     HomeComponent,
     ScoreComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,

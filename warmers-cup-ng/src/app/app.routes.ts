@@ -1,3 +1,4 @@
+import { CategoryComponent } from './category/category.component';
 import { TeamComponent } from './team/team.component';
 import { PlayerComponent } from './player/player.component';
 import { ScoreComponent } from './score/score.component';
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
     { path: 'player', component: PlayerComponent, canActivate: [MenuGuard] },
     { path: 'score', component: ScoreComponent, canActivate: [MenuGuard] },
     { path: 'presentation', component: PresentationComponent, canActivate: [MenuGuard] },
+    { path: 'category', component: CategoryComponent, canActivate: [MenuGuard] },
     { path: '**', redirectTo: 'home', }
 ];
 
