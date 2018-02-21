@@ -2,7 +2,6 @@ package br.com.mkacunha.warmerscup.warmerscupserver.application.controller;
 
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.category.CategoryDTO;
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.category.CategoryService;
-import br.com.mkacunha.warmerscup.warmerscupserver.domain.team.TeamDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -11,7 +10,7 @@ import java.net.URI;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("categories")
+@RequestMapping("a")
 public class CategoryController {
 
     private final CategoryService service;
@@ -38,8 +37,8 @@ public class CategoryController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity put(@PathVariable("id") String id, @RequestBody TeamDTO team) {
-        return ResponseEntity.accepted().body(service.update(id, team));
+    public ResponseEntity put(@PathVariable("id") String id, @RequestBody CategoryDTO category) {
+        return ResponseEntity.accepted().body(service.update(id, category));
     }
 
     @DeleteMapping("{id}")

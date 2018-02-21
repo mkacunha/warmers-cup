@@ -1,7 +1,9 @@
 package br.com.mkacunha.warmerscup.warmerscupserver.domain.category;
 
 import br.com.mkacunha.warmerscup.warmerscupserver.infrastructure.translator.Translator;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CategoryTranslator implements Translator<Category, CategoryDTO> {
 
     @Override
