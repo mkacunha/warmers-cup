@@ -10,7 +10,7 @@ import java.net.URI;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("a")
+@RequestMapping("categories")
 public class CategoryController {
 
     private final CategoryService service;

@@ -46,4 +46,8 @@ public class CategoryService {
     public void delete(String id) {
         repository.delete(id);
     }
+
+    public Category findOne(String id) {
+        return repository.findOne(id);
+    }
 }

@@ -18,7 +18,7 @@ public class Category implements Consumer<CategoryDTO> {
     private String name;
 
     @Column(nullable = false)
-    private Integer measure;
+    private Integer measure = 0;
 
     protected Category() {
     }
