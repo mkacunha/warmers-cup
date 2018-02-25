@@ -20,11 +20,7 @@ public class ScoreController {
         this.balanceTeamService = balanceTeamService;
     }
 
-    @PostMapping("process")
-    public ResponseEntity process() {
-        scoreService.processCounts();
-        return ResponseEntity.ok("ok");
-    }
+
 
     @PostMapping("")
     public ResponseEntity post(@RequestBody ScoreDTO score) {
@@ -32,6 +28,11 @@ public class ScoreController {
         return ResponseEntity.ok("ok");
     }
 
+    @PostMapping("process")
+    public ResponseEntity process() {
+        scoreService.processCounts();
+        return ResponseEntity.ok("ok");
+    }
 
     @GetMapping
     public ResponseEntity getAllCountsByTeam() {

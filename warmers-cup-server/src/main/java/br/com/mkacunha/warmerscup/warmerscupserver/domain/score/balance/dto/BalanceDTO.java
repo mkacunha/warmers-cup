@@ -6,15 +6,20 @@ public class BalanceDTO {
 
     private Integer totalAmount = 0;
 
-    private List<BalanceTeamDTO> balanceSheetsTeamDTO;
+    private Integer numberPlayers = 0;
 
-    private BalanceDTO(List<BalanceTeamDTO> balanceSheetsTeamDTO) {
-        this.balanceSheetsTeamDTO = balanceSheetsTeamDTO;
+    private List<BalanceTeamDTO> balanceSheetsTeam;
+
+    private BalanceDTO(List<BalanceTeamDTO> balanceSheetsTeam) {
+        this.balanceSheetsTeam = balanceSheetsTeam;
         this.runCalculation();
     }
 
     private void runCalculation() {
-        this.totalAmount = this.balanceSheetsTeamDTO.stream().mapToInt(BalanceTeamDTO::getAmount).sum();
+        BalanceTeamDTOConsumer consumer = BalanceTeamDTOConsumer.of();
+        this.balanceSheetsTeam.forEach(consumer);
+        this.totalAmount = consumer.getTotalAmount();
+        this.numberPlayers = consumer.getNumberPlayers();
     }
 
     public static BalanceDTO of(List<BalanceTeamDTO> balanceSheetsTeamDTO) {
@@ -25,7 +30,11 @@ public class BalanceDTO {
         return totalAmount;
     }
 
-    public List<BalanceTeamDTO> getBalanceSheetsTeamDTO() {
-        return balanceSheetsTeamDTO;
+    public List<BalanceTeamDTO> getBalanceSheetsTeam() {
+        return balanceSheetsTeam;
+    }
+
+    public Integer getNumberPlayers() {
+        return numberPlayers;
     }
 }
