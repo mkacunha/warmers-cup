@@ -3,10 +3,13 @@ package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance;
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.dto.BalanceDTO;
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.dto.BalanceTeamDTO;
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.translator.BalanceTeamTranslator;
+import br.com.mkacunha.warmerscup.warmerscupserver.domain.team.Team;
+import br.com.mkacunha.warmerscup.warmerscupserver.domain.team.TeamService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BalanceTeamService {
@@ -15,9 +18,12 @@ public class BalanceTeamService {
 
     private final BalanceTeamTranslator balanceTeamTranslator;
 
-    public BalanceTeamService(BalanceTeamRepository repository, BalanceTeamTranslator balanceTeamTranslator) {
+    private final TeamService teamService;
+
+    public BalanceTeamService(BalanceTeamRepository repository, BalanceTeamTranslator balanceTeamTranslator, TeamService teamService) {
         this.repository = repository;
         this.balanceTeamTranslator = balanceTeamTranslator;
+        this.teamService = teamService;
     }
 
     @Transactional
@@ -28,7 +34,19 @@ public class BalanceTeamService {
 
     @Transactional
     public BalanceDTO getAllAsDTO() {
-        List<BalanceTeamDTO> balanceSheetsTeamDTO = balanceTeamTranslator.apply(repository.findAll());
-        return BalanceDTO.of(balanceSheetsTeamDTO);
+        BalanceDTO balanceDTO = BalanceDTO.of();
+        List<Team> teams = teamService.findAll();
+        teams.forEach(team -> this.getCurrentScore(team).ifPresent(balanceTeamDTO -> balanceDTO.add(balanceTeamDTO)));
+        balanceDTO.setNumberPlayers(teams.stream().mapToInt(Team::getNumberPlayers).sum());
+        return balanceDTO;
+    }
+
+
+    public Optional<BalanceTeamDTO> getCurrentScore(Team team) {
+        Optional<BalanceTeam> balanceTeam = repository.findFirstByTeamOrderByDateDesc(team);
+        if (balanceTeam.isPresent()) {
+            return Optional.ofNullable(balanceTeamTranslator.apply(balanceTeam.get()));
+        }
+        return Optional.empty();
     }
 }

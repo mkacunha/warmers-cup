@@ -30,6 +30,6 @@ public class CreatePlayerWithTeam {
 
         PlayerDTO playerDTO = workerToPLayerDTOTranslator.apply(workerDTO, teamDTO);
         playerService.create(playerDTO);
-        return PresentationDTO.of(teamDTO, playerDTO);
+        return PresentationDTO.ofFirst(teamDTO, playerDTO);
     }
 }

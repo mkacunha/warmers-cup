@@ -1,5 +1,6 @@
 package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BalanceDTO {
@@ -8,22 +9,18 @@ public class BalanceDTO {
 
     private Integer numberPlayers = 0;
 
-    private List<BalanceTeamDTO> balanceSheetsTeam;
+    private List<BalanceTeamDTO> balanceSheetsTeam = new ArrayList<>();
 
-    private BalanceDTO(List<BalanceTeamDTO> balanceSheetsTeam) {
-        this.balanceSheetsTeam = balanceSheetsTeam;
+    private BalanceDTO() {
+    }
+
+    public static BalanceDTO of() {
+        return new BalanceDTO();
+    }
+
+    public void add(BalanceTeamDTO balanceTeamDTO) {
+        this.balanceSheetsTeam.add(balanceTeamDTO);
         this.runCalculation();
-    }
-
-    private void runCalculation() {
-        BalanceTeamDTOConsumer consumer = BalanceTeamDTOConsumer.of();
-        this.balanceSheetsTeam.forEach(consumer);
-        this.totalAmount = consumer.getTotalAmount();
-        this.numberPlayers = consumer.getNumberPlayers();
-    }
-
-    public static BalanceDTO of(List<BalanceTeamDTO> balanceSheetsTeamDTO) {
-        return new BalanceDTO(balanceSheetsTeamDTO);
     }
 
     public Integer getTotalAmount() {
@@ -36,5 +33,15 @@ public class BalanceDTO {
 
     public Integer getNumberPlayers() {
         return numberPlayers;
+    }
+
+    public void setNumberPlayers(Integer numberPlayers) {
+        this.numberPlayers = numberPlayers;
+    }
+
+    private void runCalculation() {
+        BalanceTeamDTOConsumer consumer = BalanceTeamDTOConsumer.of();
+        this.balanceSheetsTeam.forEach(consumer);
+        this.totalAmount = consumer.getTotalAmount();
     }
 }

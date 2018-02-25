@@ -11,6 +11,8 @@ public interface BalanceTeamRepository extends CrudRepository<BalanceTeam, Strin
 
     Optional<BalanceTeam> findByTeamAndDate(Team team, Date date);
 
+    Optional<BalanceTeam> findFirstByTeamOrderByDateDesc(Team team);
+
     List<BalanceTeam> findAll();
 
 }

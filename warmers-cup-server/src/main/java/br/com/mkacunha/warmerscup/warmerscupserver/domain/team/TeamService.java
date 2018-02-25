@@ -31,8 +31,12 @@ public class TeamService {
         return teamTranslator.apply(saved);
     }
 
-    public List<TeamDTO> findAll() {
+    public List<TeamDTO> findAllAsDTO() {
         return this.teamTranslator.apply(repository.findAll());
+    }
+
+    public List<Team> findAll() {
+        return repository.findAll();
     }
 
     public Team findOne(String id) {

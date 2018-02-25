@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 @CrossOrigin("*")
 @RestController
@@ -29,7 +28,7 @@ public class TeamController {
 
     @GetMapping
     public ResponseEntity getAll() {
-        return ResponseEntity.ok(service.findAll());
+        return ResponseEntity.ok(service.findAllAsDTO());
     }
 
     @GetMapping("{id}")
