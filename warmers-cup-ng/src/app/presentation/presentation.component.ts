@@ -52,7 +52,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   private initObservableShowTeam() {
-    Observable.timer(3000).take(1).subscribe(() => this.showInput());
+    Observable.timer(5000).take(1).subscribe(() => this.showInput());
   }
 
   private selectTeam() {
