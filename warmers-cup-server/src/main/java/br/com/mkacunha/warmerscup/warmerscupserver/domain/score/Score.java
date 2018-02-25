@@ -63,6 +63,14 @@ public class Score {
         return this.amount * this.category.getMeasure();
     }
 
+    public String getteamId() {
+        return team.getId();
+    }
+
+    public String getCategoryId() {
+        return category.getId();
+    }
+
     static class Builder {
 
         private String id;
