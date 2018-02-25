@@ -72,3 +72,10 @@ input.ng-invalid.ng-touched:focus {
     background-attachment: fixed;
     background-size: cover;
 }
+
+.btn-section-right {
+    width: 150px;
+    position: absolute !important;
+    top: 35px;
+    right: 35px;
+}

@@ -1,3 +1,5 @@
+import { HomeModule } from './home/home.module';
+import { ScoreModule } from './score/score.module';
 import { CategoryModule } from './category/category.module';
 import { PresentationModule } from './presentation/presentation.module';
 import { PlayerModule } from './player/player.module';
@@ -12,7 +14,6 @@ import { routing } from './app.routes';
 
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { ScoreComponent } from './score/score.component';
 
 
@@ -22,7 +23,6 @@ import 'rxjs/Rx';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     ScoreComponent,
   ],
   imports: [
@@ -34,7 +34,9 @@ import 'rxjs/Rx';
     TeamModule,
     PlayerModule,
     PresentationModule,
-    CategoryModule
+    CategoryModule,
+    ScoreModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
