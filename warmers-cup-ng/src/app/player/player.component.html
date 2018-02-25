@@ -3,6 +3,9 @@
     <section class="panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
       <div class="mdl-card mdl-cell mdl-cell--12-col">
         <h4>Jogadores</h4>
+        <button (click)="copyEmails()" class="btn-section-right  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Copiar E-mails
+        </button>
       </div>
 
       <div class="mdl-card mdl-cell mdl-cell--6-col">
@@ -37,3 +40,5 @@
     </tbody>
   </table>
 </main>
+
+<input class="input-copy" #inputSelect>

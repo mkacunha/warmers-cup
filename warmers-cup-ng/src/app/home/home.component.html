@@ -17,7 +17,7 @@
         <h2 class="mdl-card__title-text">Quantidade de Jogadores</h2>
       </div>
       <div class="mdl-card__media">
-        <h2 class="resume-value">{{balance.numberPlayers}}</h2>
+        <h2 class="resume-value">{{balance?.numberPlayers}}</h2>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
         <h2 class="mdl-card__title-text">Quantidade de doações</h2>
       </div>
       <div class="mdl-card__media">
-        <h2 class="resume-value">{{balance.totalAmount}}</h2>
+        <h2 class="resume-value">{{balance?.totalAmount}}</h2>
       </div>
     </div>
   </section>
@@ -48,7 +48,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of balance.balanceSheetsTeam">
+      <tr *ngFor="let item of balance?.balanceSheetsTeam">
         <td class="mdl-data-table__cell--non-numeric">{{item.ranking}}</td>
         <td class="mdl-data-table__cell--non-numeric">{{item.team.name}}</td>
         <td>{{item.team.numberPlayers}}</td>

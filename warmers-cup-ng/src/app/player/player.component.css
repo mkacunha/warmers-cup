@@ -1,0 +1,5 @@
+.input-copy, .input-copy:focus {
+    color: transparent;
+    border-color: transparent;
+    background-color: transparent;
+}

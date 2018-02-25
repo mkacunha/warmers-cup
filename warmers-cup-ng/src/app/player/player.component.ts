@@ -1,8 +1,10 @@
 import { Team } from './../team/team';
 import { PlayerService } from './player.service';
 import { Filter } from './filter';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TeamService } from '../team/team.service';
+import { concat } from 'rxjs/observable/concat';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-player',
@@ -16,7 +18,9 @@ export class PlayerComponent implements OnInit {
   players: any[];
   teams: Team[];
 
-  constructor(private _service: PlayerService, private _teamService: TeamService) { }
+  @ViewChild('inputSelect') inputSelect: ElementRef;
+
+  constructor(private _service: PlayerService, private _teamService: TeamService, private _toast: ToastrService) { }
 
   ngOnInit() {
     this.findPlayers();
@@ -28,10 +32,11 @@ export class PlayerComponent implements OnInit {
   }
 
   private findPlayers() {
-    this._service.findAll().take(1).subscribe(res => this.players = res);
+    this._service
+      .findAll().take(1).subscribe(res => this.players = res, () => this._toast.error('Ocorreu um erro inesperado, tente novamente.'));
   }
 
-  playersFiltered() {
+  playersFiltered(): any[] {
     if (this.players) {
       if (this.filter.playerName || this.filter.teamName) {
         return this.players.filter(player => {
@@ -43,5 +48,17 @@ export class PlayerComponent implements OnInit {
       return this.players;
     }
     return [];
+  }
+
+  copyEmails() {
+    let emails = this.playersFiltered().map(player => player.email).toString();
+    if (emails && emails.length > 0) {
+      emails = emails.split(',').reverse().join(';');
+      this.inputSelect.nativeElement.value = emails;
+      this.inputSelect.nativeElement.select();
+      document.execCommand('copy');
+      this.inputSelect.nativeElement.value = '';
+      this._toast.info('E-mails copiados para a área de tranferência');
+    }
   }
 }
