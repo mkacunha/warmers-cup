@@ -1,9 +1,8 @@
-package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.accounting.dto;
+package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.dto;
 
-import br.com.mkacunha.warmerscup.warmerscupserver.domain.category.Category;
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.category.CategoryDTO;
 
-public class AccountCategoryDTO {
+public class BalanceCategoryDTO {
 
     private String id;
 

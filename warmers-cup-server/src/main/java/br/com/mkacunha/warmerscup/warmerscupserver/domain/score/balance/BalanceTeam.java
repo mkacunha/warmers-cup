@@ -1,4 +1,4 @@
-package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.accounting;
+package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance;
 
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.team.Team;
 
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class AccountTeam {
+public class BalanceTeam {
 
     @Id
     private String id;
@@ -26,18 +26,18 @@ public class AccountTeam {
     private Date date;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<AccountCategory> accountsCategory;
+    private List<BalanceCategory> balanceSheetsCategory;
 
-    public AccountTeam() {
+    public BalanceTeam() {
     }
 
-    public AccountTeam(Builder builder) {
+    public BalanceTeam(Builder builder) {
         this.id = builder.id;
         this.ranking = builder.ranking;
         this.team = builder.team;
         this.amount = builder.amount;
         this.date = builder.date;
-        this.accountsCategory = builder.accountsCategory;
+        this.balanceSheetsCategory = builder.balanceSheetsCategory;
         this.totalPoints = builder.totalPoints;
     }
 
@@ -66,8 +66,8 @@ public class AccountTeam {
         return date;
     }
 
-    public List<AccountCategory> getAccountsCategory() {
-        return accountsCategory;
+    public List<BalanceCategory> getBalanceSheetsCategory() {
+        return balanceSheetsCategory;
     }
 
     public static Builder builder() {
@@ -88,7 +88,7 @@ public class AccountTeam {
 
         private Date date;
 
-        private List<AccountCategory> accountsCategory;
+        private List<BalanceCategory> balanceSheetsCategory;
 
         public Builder ranking(Integer ranking) {
             this.ranking = ranking;
@@ -110,15 +110,15 @@ public class AccountTeam {
             return this;
         }
 
-        public Builder accountsCategory(List<AccountCategory> accountsCategory) {
-            this.accountsCategory = accountsCategory;
+        public Builder balanceSheetsCategory(List<BalanceCategory> balanceSheetsCategory) {
+            this.balanceSheetsCategory = balanceSheetsCategory;
             return this;
         }
 
-        public AccountTeam build() {
+        public BalanceTeam build() {
             this.date = new Date();
             this.id = UUID.randomUUID().toString();
-            return new AccountTeam(this);
+            return new BalanceTeam(this);
         }
     }
 }

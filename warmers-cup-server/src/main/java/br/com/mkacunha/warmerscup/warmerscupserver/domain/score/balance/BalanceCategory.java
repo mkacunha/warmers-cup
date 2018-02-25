@@ -1,4 +1,4 @@
-package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.accounting;
+package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance;
 
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.category.Category;
 
@@ -9,10 +9,10 @@ import javax.persistence.ManyToOne;
 import java.util.UUID;
 
 @Entity
-public class AccountCategory {
+public class BalanceCategory {
 
     @Id
-    @Column(name = "account_category_id")
+    @Column(name = "balance_category_id")
     private String id;
 
     @ManyToOne
@@ -22,10 +22,10 @@ public class AccountCategory {
 
     private Integer totalPoints;
 
-    protected AccountCategory() {
+    protected BalanceCategory() {
     }
 
-    public AccountCategory(Builder builder) {
+    public BalanceCategory(Builder builder) {
         this.id = builder.id;
         this.category = builder.category;
         this.amount = builder.amount;
@@ -81,8 +81,8 @@ public class AccountCategory {
             return this;
         }
 
-        public AccountCategory build() {
-            return new AccountCategory(this);
+        public BalanceCategory build() {
+            return new BalanceCategory(this);
         }
     }
 }

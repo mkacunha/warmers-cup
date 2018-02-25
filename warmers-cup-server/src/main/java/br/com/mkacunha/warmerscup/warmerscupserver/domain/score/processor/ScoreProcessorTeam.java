@@ -36,7 +36,7 @@ public class ScoreProcessorTeam {
         return team;
     }
 
-    public Collection<ScoreProcessorCategory> getCountByCategory() {
+    public Collection<ScoreProcessorCategory> getCountsByCategory() {
         return counts.values();
     }
 

@@ -1,11 +1,11 @@
-package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.accounting.dto;
+package br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.dto;
 
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.team.TeamDTO;
 
 import java.util.Date;
 import java.util.List;
 
-public class AccountTeamDTO {
+public class BalanceTeamDTO {
 
     private String id;
 
@@ -19,7 +19,7 @@ public class AccountTeamDTO {
 
     private Date date;
 
-    private List<AccountCategoryDTO> accountsCategory;
+    private List<BalanceCategoryDTO> balanceSheetsCategory;
 
     public String getId() {
         return id;
@@ -69,11 +69,11 @@ public class AccountTeamDTO {
         this.date = date;
     }
 
-    public List<AccountCategoryDTO> getAccountsCategory() {
-        return accountsCategory;
+    public List<BalanceCategoryDTO> getBalanceSheetsCategory() {
+        return balanceSheetsCategory;
     }
 
-    public void setAccountsCategory(List<AccountCategoryDTO> accountsCategory) {
-        this.accountsCategory = accountsCategory;
+    public void setBalanceSheetsCategory(List<BalanceCategoryDTO> balanceSheetsCategory) {
+        this.balanceSheetsCategory = balanceSheetsCategory;
     }
 }
