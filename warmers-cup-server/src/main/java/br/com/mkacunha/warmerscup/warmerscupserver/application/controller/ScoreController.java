@@ -25,7 +25,7 @@ public class ScoreController {
     @PostMapping("")
     public ResponseEntity post(@RequestBody ScoreDTO score) {
         scoreService.newScore(score);
-        return ResponseEntity.ok("ok");
+        return ResponseEntity.ok(score);
     }
 
     @PostMapping("process")

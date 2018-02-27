@@ -21,7 +21,7 @@ public class ScoreDTOTranslator implements Translator<ScoreDTO, Score> {
 
     @Override
     public Score apply(ScoreDTO dto) {
-        Team team = teamService.findOne(dto.getTeamID());
+        Team team = teamService.findOne(dto.getTeamId());
         Category category = categoryService.findOne(dto.getCategoryId());
         return Score.builder()
                 .team(team)
