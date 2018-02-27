@@ -1,0 +1,57 @@
+<header>
+    <h5>COPA DOS AGASALHOS</h5>
+</header>
+
+<main>
+    <div *ngIf="isAmount" class="mdl-cell--12-col mdl-textfield">
+        <label for="selecao">Seleção</label>
+        <input disabled name="selecao" class="mdl-textfield__input" type="text" id="selecao" [(ngModel)]="score.$team.name" required>
+    </div>
+    <div *ngIf="isAmount" class="mdl-cell--12-col mdl-textfield">
+        <label for="selecao">Categoria</label>
+        <input disabled name="categoria" class="mdl-textfield__input" type="text" id="selecao" [(ngModel)]="score.$category.name"
+            required>
+    </div>
+    <div *ngIf="isAmount" class="mdl-cell--12-col mdl-textfield">
+        <label for="selecao">Quantidade</label>
+        <input name="quantidade" class="mdl-textfield__input" type="number" id="selecao" [(ngModel)]="score.amount" required>
+    </div>
+
+    <table *ngIf="isTeam" class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp with-100">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Seleção</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let team of teams">
+                <td class="mdl-data-table__cell--non-numeric" (click)="onClickTeam(team)">{{team.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table *ngIf="isCategory" class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp with-100">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let category of categories">
+                <td class="mdl-data-table__cell--non-numeric" (click)="onCliclCategory(category)">{{category.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <section>
+        <button [disabled]="!score.isValid" (click)="onClickSave()" class="btn-form  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Salvar
+        </button>
+
+        <button (click)="onClickCancel()" class="btn-form  mdl-button mdl-js-button mdl-button--raised">
+            Cancelar
+        </button>
+    </section>
+</main>
+
+<pre>{{score | json}}</pre>

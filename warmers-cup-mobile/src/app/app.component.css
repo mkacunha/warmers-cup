@@ -1,0 +1,38 @@
+header {
+    background-color: #455a64;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #ffffff;
+}
+
+main {
+    margin: 70px 5px 5px 5px;
+}
+
+label {
+    font-size: 12px;
+}
+
+input, select {
+    outline: none !important;
+}
+
+input:focus, select:focus {
+    border-bottom: solid 1.5px !important;
+}
+
+table {
+    width: 100%;
+}
+
+section {
+    padding: 5px;
+}
+
+section>button {
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
