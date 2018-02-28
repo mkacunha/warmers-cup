@@ -9,7 +9,7 @@ export class ScoreService {
   constructor(private _http: HttpClient) { }
 
   getAllCountsByTeam(): Observable<any> {
-    return this._http.get<any[]>(`${environment.urlApi}/counts/`);
+    return this._http.post<any[]>(`${environment.urlApi}/counts/process/`, {});
   }
 
 
