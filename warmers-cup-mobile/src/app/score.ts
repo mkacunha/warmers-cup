@@ -26,6 +26,6 @@ export class Score {
     }
 
     get isValid(): boolean {
-        return this.teamId && this.categoryId && this.amount && this.amount > 0;
+        return this.teamId && this.categoryId && this.amount && this.amount !== 0;
     }
 }
