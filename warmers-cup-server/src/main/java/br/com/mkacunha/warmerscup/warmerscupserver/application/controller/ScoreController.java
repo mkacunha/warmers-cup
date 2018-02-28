@@ -31,7 +31,7 @@ public class ScoreController {
     @PostMapping("process")
     public ResponseEntity process() {
         scoreService.processCounts();
-        return ResponseEntity.ok("ok");
+        return ResponseEntity.ok(balanceTeamService.getAllAsDTO());
     }
 
     @GetMapping
