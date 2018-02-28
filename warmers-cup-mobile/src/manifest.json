@@ -1,0 +1,19 @@
+{
+    "short_name": "Copa do Agasalho",
+    "name": "Copa do Agasalho",
+    "start_url": "/",
+
+    "background_color": "#ffffff",
+
+    "display": "standalone",
+    "orientation": "portrait",
+
+    "icons": [
+        {
+            "src": "/assets/icons/bola.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+
+}
