@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.UUID;
 
+import static java.lang.Boolean.FALSE;
+
 @Entity
 public class Player {
 
@@ -18,6 +20,8 @@ public class Player {
     private String email;
 
     private String hash;
+
+    private Boolean remote = FALSE;
 
     @ManyToOne
     private Team team;
@@ -57,6 +61,10 @@ public class Player {
 
     public Team getTeam() {
         return team;
+    }
+
+    public Boolean getRemote() {
+        return remote;
     }
 
     static class Builder {

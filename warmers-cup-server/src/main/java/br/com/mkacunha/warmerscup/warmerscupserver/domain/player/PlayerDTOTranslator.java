@@ -5,6 +5,8 @@ import br.com.mkacunha.warmerscup.warmerscupserver.domain.team.TeamService;
 import br.com.mkacunha.warmerscup.warmerscupserver.infrastructure.translator.Translator;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class PlayerDTOTranslator implements Translator<PlayerDTO, Player> {
 
@@ -16,10 +18,11 @@ public class PlayerDTOTranslator implements Translator<PlayerDTO, Player> {
 
     @Override
     public Player apply(PlayerDTO dto) {
-        Team team = teamService.findOne(dto.getTeamId());
+        String teamId = dto.getTeamId().orElseGet(() -> teamService.selectTeamWihtMinPlayer().getId());
+        Team team = teamService.findOne(teamId);
         return Player.builder()
                 .name(dto.getName())
-                .hash(dto.getHash())
+                .hash(dto.getHash().orElseGet(() -> UUID.randomUUID().toString()))
                 .email(dto.getEmail())
                 .team(team)
                 .build();
