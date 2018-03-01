@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TeamService } from '../team/team.service';
 import { concat } from 'rxjs/observable/concat';
 import { ToastrService } from 'ngx-toastr';
+import { Player } from './player';
 
 @Component({
   selector: 'app-player',
@@ -17,6 +18,10 @@ export class PlayerComponent implements OnInit {
 
   players: any[];
   teams: Team[];
+
+  player: Player = new Player();
+
+  isNew = false;
 
   @ViewChild('inputSelect') inputSelect: ElementRef;
 
@@ -60,5 +65,26 @@ export class PlayerComponent implements OnInit {
       this.inputSelect.nativeElement.value = '';
       this._toast.info('E-mails copiados para a área de tranferência');
     }
+  }
+
+  onClickNewPlayer() {
+    this.isNew = true;
+    this.player = new Player();
+  }
+
+  onClickSave() {
+    this._service
+      .post(this.player)
+      .take(1)
+      .subscribe(() => this.onSuccessSavePlayer(), () => this._toast.error('Erro ao salvar usuário, verifique os valores informados'));
+  }
+
+  onClickCancel() {
+    this.isNew = false;
+  }
+
+  private onSuccessSavePlayer() {
+    this.findPlayers();
+    this.isNew = false;
   }
 }

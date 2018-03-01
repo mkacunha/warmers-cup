@@ -52,12 +52,12 @@ input:focus, select:focus {
     border-bottom: solid 1.5px !important;
 }
 
-input.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
     color: #d50000;
     border-bottom: solid 1px !important;
 }
 
-input.ng-invalid.ng-touched:focus {
+input.ng-invalid.ng-touched:focus, select.ng-invalid.ng-touched:focus {
     color: #d50000;
     border-bottom: solid 1.5px !important;
 }

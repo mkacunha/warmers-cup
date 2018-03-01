@@ -47,18 +47,22 @@ export class PresentationComponent implements OnInit, OnDestroy {
   private initObservableInput() {
     if (!this.isInitInput && this.isShowInput) {
       this.isInitInput = true;
-      Observable.timer(1000).take(1).subscribe(() => this.selectTeam());
+      Observable
+        .timer(1000)
+        .take(1)
+        .subscribe(() => this.selectTeam());
     }
-  }
-
-  private initObservableShowTeam() {
-    Observable.timer(5000).take(1).subscribe(() => this.showInput());
   }
 
   private selectTeam() {
     this.isShowInput = false;
     this.isSelectTeam = true;
-    this._service.selectTeam(this.hash).take(1).subscribe(res => this.showTeam(res));
+    this._service
+      .selectTeam(this.hash)
+      .take(1)
+      .subscribe(
+        res => this.showTeam(res),
+        () => this.showError());
   }
 
   private showTeam(res: any) {
@@ -67,6 +71,28 @@ export class PresentationComponent implements OnInit, OnDestroy {
     this.isShowTeam = true;
     this.changeBackground(this.data.team.urlBackground);
     this.initObservableShowTeam();
+  }
+
+  private initObservableShowTeam() {
+    Observable.timer(5000).take(1).subscribe(() => {
+      if (this.data.first) {
+        this.showInput();
+      } else if (this.data.existsScore) {
+        this.showResult();
+      } else {
+        this.showNoHaveScore();
+      }
+    });
+  }
+
+  private showResult() {
+    this.changeBackground('../assets/images/result.jpeg');
+    Observable.timer(5000).take(1).subscribe(() => this.showInput());
+  }
+
+  private showNoHaveScore() {
+    this.changeBackground('../assets/images/wihtout-score.jpeg');
+    Observable.timer(5000).take(1).subscribe(() => this.showInput());
   }
 
   private showInput() {
@@ -91,5 +117,10 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   private defaultBackground() {
     this.changeBackground('../assets/images/warmers-cup-background.gif');
+  }
+
+  private showError() {
+    this.changeBackground('../assets/images/error.jpeg');
+    Observable.timer(5000).take(1).subscribe(() => this.defaultBackground());
   }
 }

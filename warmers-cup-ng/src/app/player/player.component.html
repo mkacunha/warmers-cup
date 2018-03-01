@@ -3,25 +3,79 @@
     <section class="panel section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
       <div class="mdl-card mdl-cell mdl-cell--12-col">
         <h4>Jogadores</h4>
-        <button (click)="copyEmails()" class="btn-section-right  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-          Copiar E-mails
+        <button (click)="onClickNewPlayer()" class="btn-section-right  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Novo
         </button>
       </div>
 
-      <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <label for="selecao">Filtrar por Jogador</label>
-        <input name="selecao" class="mdl-textfield__input" type="text" id="selecao" [(ngModel)]="filter.playerName">
+      <div *ngIf="isNew" class="mdl-card mdl-cell mdl-cell--6-col">
+        <div class="mdl-cell--12-col mdl-textfield">
+          <label for="hash">Hash</label>
+          <input name="hash" class="mdl-textfield__input" type="text" id="hash" [(ngModel)]="player.hash">
+        </div>
+
+        <div class="mdl-cell--12-col mdl-textfield">
+          <label for="name">Nome*</label>
+          <input name="name" class="mdl-textfield__input" type="text" id="name" [(ngModel)]="player.name" required>
+        </div>
+
+        <div class="mdl-cell mdl-cell--12-col mdl-textfield" style="margin: 0 !important">
+            <label for="selecao">Seleção</label>
+            <select name="selecao" class="mdl-textfield__input" type="text" id="selecao" [(ngModel)]="player.teamId">
+              <option value=""></option>
+              <option *ngFor="let team of teams" [value]="team.id">{{team.name}}</option>
+            </select>
+          </div>
       </div>
 
-      <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <label for="tecnico">Filtrar por Seleção</label>
-        <select name="tecnico" class="mdl-textfield__input" type="text" id="tecnico" [(ngModel)]="filter.teamName">
+      <div *ngIf="isNew" class="mdl-card mdl-cell mdl-cell--6-col">
+        <div class="mdl-cell--12-col">
+          <section class="mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell--12-col mdl-textfield">
+              <label for="email">E-mail*</label>
+              <input name="email" class="mdl-textfield__input" type="text" id="email" [(ngModel)]="player.email" required>
+            </div>
+          </section>
+        </div>
+
+        <div class="mdl-cell--12-col mdl-textfield">
+          <label for="tipo-jogador">Tipo jogador*</label>
+          <select name="tipo-jogador" class="mdl-textfield__input" type="text" id="tipo-jogador" [(ngModel)]="player.$remote">
+            <option value="P">Presencial</option>
+            <option value="R">Remoto</option>
+          </select>
+        </div>
+      </div>
+
+      <div *ngIf="isNew" class="form-footer mdl-card mdl-cell mdl-cell--12-col">
+        <label class="label-required">*: campos são obrigatórios</label>
+
+        <button (click)="onClickSave()" class="btn-form  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+          [disabled]="!form.valid">
+          Salvar
+        </button>
+
+        <button (click)="onClickCancel()" class="btn-form  mdl-button mdl-js-button mdl-button--raised">
+          Cancelar
+        </button>
+      </div>
+
+      <div *ngIf="!isNew" class="mdl-card mdl-cell mdl-cell--6-col">
+        <label for="jogador-filtro">Filtrar por Jogador</label>
+        <input name="jogador-filtro" class="mdl-textfield__input" type="text" id="jogador-filtro" [(ngModel)]="filter.playerName">
+      </div>
+
+      <div *ngIf="!isNew" class="mdl-card mdl-cell mdl-cell--6-col">
+        <label for="selecao-filtro">Filtrar por Seleção</label>
+        <select name="selecao-filtro" class="mdl-textfield__input" type="text" id="selecao-filtro" [(ngModel)]="filter.teamName">
           <option value=""></option>
           <option *ngFor="let team of teams" [value]="team.name">{{team.name}}</option>
         </select>
       </div>
     </section>
   </form>
+
+  <a class="a-copy-emails" (click)="copyEmails()">COPIAR E-MAILS</a>
 
   <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp with-100">
     <thead>
