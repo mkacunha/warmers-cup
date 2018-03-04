@@ -1,34 +1,58 @@
 package br.com.mkacunha.warmerscup.warmerscupserver.domain.worker;
 
-public class WorkerDTO {
+import java.io.Serializable;
 
-    private String name;
+public class WorkerDTO implements Serializable{
 
-    private String hash;
+	private static final long serialVersionUID = -8357557244569148077L;
 
-    private String email;
+	private Long id;
 
-    public String getName() {
-        return name;
-    }
+	private String rfid;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	private String name;
 
-    public String getHash() {
-        return hash;
-    }
+	private String email;
 
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
+	private boolean isRemote;
 
-    public String getEmail() {
-        return email;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getRfid() {
+		return rfid;
+	}
+
+	public void setRfid(String rfid) {
+		this.rfid = rfid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean isRemote() {
+		return isRemote;
+	}
+
+	public void setRemote(boolean remote) {
+		isRemote = remote;
+	}
 }
