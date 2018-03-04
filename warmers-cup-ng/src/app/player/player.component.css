@@ -5,7 +5,7 @@
 }
 
 .a-copy-emails {
-    display: block;
+    display: inline-block;
     text-align: right;
     text-decoration: none;
     cursor: hand;
@@ -50,4 +50,12 @@ section {
     position: absolute;
     top: 35px;
     right: 35px;
+}
+
+div.options {
+    align-items: center;
+}
+
+div.options>a {
+    margin: 30px 0;
 }

@@ -67,6 +67,10 @@ export class PlayerComponent implements OnInit {
     }
   }
 
+  onClickNotifyRemotes() {
+    this._service.notifyRemote().take(1).subscribe(() => this._toast.info('Notifiações enviadas com successo!'));
+  }
+
   onClickNewPlayer() {
     this.isNew = true;
     this.player = new Player();

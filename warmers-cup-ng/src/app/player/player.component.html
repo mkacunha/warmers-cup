@@ -20,12 +20,12 @@
         </div>
 
         <div class="mdl-cell mdl-cell--12-col mdl-textfield" style="margin: 0 !important">
-            <label for="selecao">Seleção</label>
-            <select name="selecao" class="mdl-textfield__input" type="text" id="selecao" [(ngModel)]="player.teamId">
-              <option value=""></option>
-              <option *ngFor="let team of teams" [value]="team.id">{{team.name}}</option>
-            </select>
-          </div>
+          <label for="selecao">Seleção</label>
+          <select name="selecao" class="mdl-textfield__input" type="text" id="selecao" [(ngModel)]="player.teamId">
+            <option value=""></option>
+            <option *ngFor="let team of teams" [value]="team.id">{{team.name}}</option>
+          </select>
+        </div>
       </div>
 
       <div *ngIf="isNew" class="mdl-card mdl-cell mdl-cell--6-col">
@@ -72,10 +72,16 @@
           <option *ngFor="let team of teams" [value]="team.name">{{team.name}}</option>
         </select>
       </div>
+
+      <div *ngIf="!isNew" class="options mdl-card mdl-cell mdl-cell--6-col">
+        <a class="a-copy-emails" (click)="onClickNotifyRemotes()">Notificar Remotos</a>
+      </div>
+
+      <div *ngIf="!isNew" class="options mdl-card mdl-cell mdl-cell--6-col">
+        <a class="a-copy-emails" (click)="copyEmails()">Copiar E-mails</a>
+      </div>
     </section>
   </form>
-
-  <a class="a-copy-emails" (click)="copyEmails()">COPIAR E-MAILS</a>
 
   <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp with-100">
     <thead>

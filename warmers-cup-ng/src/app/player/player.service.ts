@@ -17,4 +17,8 @@ export class PlayerService {
     return this._http.post<Player>(`${environment.urlApi}/players`, player);
   }
 
+  notifyRemote(): Observable<any> {
+    return this._http.post(`${environment.urlApi}/players/notify-remote`, null);
+  }
+
 }
