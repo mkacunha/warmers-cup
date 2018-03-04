@@ -10,4 +10,6 @@ interface PlayerRepository extends CrudRepository<Player, String> {
     List<Player> findAll();
 
     Optional<Player> findByHash(String hash);
+
+    List<Player> findByRemoteIsTrue();
 }

@@ -11,7 +11,7 @@ import java.util.Optional;
 @Validated
 public class PlayerService {
 
-	private static final String TEMPLATE_BASE = "<body>\n" +
+	private static final String TEMPLATE_BASE_NEW = "<body>\n" +
 			"        <div style=\"width: 600px; margin: auto;\">\n" +
 			"                <p>\n" +
 			"                        <strong>Você se cadastrou para a Copa dos Agasalhos :)</strong>\n" +
@@ -46,7 +46,7 @@ public class PlayerService {
 	public PlayerDTO create(PlayerDTO dto) {
 		Player player = dtoTranslator.apply(dto);
 		final Player saved = repository.save(player);
-		this.enviarEmail(player);
+		this.sendMailNew(player);
 		return traslator.apply(saved);
 	}
 
@@ -58,9 +58,13 @@ public class PlayerService {
 		return repository.findByHash(hash);
 	}
 
-	private void enviarEmail(Player player) {
+	public void notifyPlayersRemote(){
+		System.out.println(repository.findByRemoteIsTrue().size());
+	}
+
+	private void sendMailNew(Player player) {
 		if (player.getRemote()) {
-			final String template = String.format(TEMPLATE_BASE, player.getTeam().getName(), player.getName());
+			final String template = String.format(TEMPLATE_BASE_NEW, player.getTeam().getName(), player.getName());
 			mailService.send(template, player.getEmail());
 		}
 	}

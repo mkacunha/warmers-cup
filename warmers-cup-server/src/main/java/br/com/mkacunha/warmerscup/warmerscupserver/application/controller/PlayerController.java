@@ -5,6 +5,8 @@ import br.com.mkacunha.warmerscup.warmerscupserver.domain.player.PlayerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("players")
@@ -25,5 +27,23 @@ public class PlayerController {
     @GetMapping
     public ResponseEntity getAll() {
         return ResponseEntity.ok(service.findAll());
+    }
+
+    @PostMapping("notify-remote")
+    public ResponseEntity notifyRemotePlayers() {
+        service.notifyPlayersRemote();
+        return ResponseEntity.ok(new Message());
+    }
+
+    private class Message implements Serializable {
+        String text = "ok";
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
     }
 }
