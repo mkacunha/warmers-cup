@@ -121,6 +121,6 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   private showError() {
     this.changeBackground('../assets/images/error.jpeg');
-    Observable.timer(5000).take(1).subscribe(() => this.defaultBackground());
+    Observable.timer(5000).take(1).subscribe(() => this.showInput());
   }
 }

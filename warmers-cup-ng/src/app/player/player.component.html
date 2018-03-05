@@ -89,6 +89,7 @@
         <th class="mdl-data-table__cell--non-numeric">Jogador</th>
         <th class="mdl-data-table__cell--non-numeric">Seleção</th>
         <th class="mdl-data-table__cell--non-numeric">E-mail</th>
+        <th class="mdl-data-table__cell--non-numeric">Remoto?</th>
       </tr>
     </thead>
     <tbody>
@@ -96,6 +97,8 @@
         <td class="mdl-data-table__cell--non-numeric">{{player.name}}</td>
         <td class="mdl-data-table__cell--non-numeric">{{player.teamName}}</td>
         <td class="mdl-data-table__cell--non-numeric">{{player.email}}</td>
+        <td *ngIf="player.remote" class="mdl-data-table__cell--non-numeric">Sim</td>
+        <td *ngIf="!player.remote" class="mdl-data-table__cell--non-numeric">Não</td>
       </tr>
     </tbody>
   </table>
