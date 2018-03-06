@@ -32,4 +32,9 @@ public class MailService {
 			e.printStackTrace();
 		}
 	}
+
+	@Async
+	public void send(Mail mail) {
+		send(mail.getEmailBody(), mail.getEmail());
+	}
 }

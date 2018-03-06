@@ -1,6 +1,10 @@
 package br.com.mkacunha.warmerscup.warmerscupserver.domain.player;
 
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.mail.MailService;
+import br.com.mkacunha.warmerscup.warmerscupserver.domain.player.mail.EmailNewPlayerRemote;
+import br.com.mkacunha.warmerscup.warmerscupserver.domain.player.mail.EmailPlayerRemoteNotification;
+import br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.BalanceTeamService;
+import br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.dto.BalanceTeamDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -11,22 +15,6 @@ import java.util.Optional;
 @Validated
 public class PlayerService {
 
-	private static final String TEMPLATE_BASE_NEW = "<body>\n" +
-			"        <div style=\"width: 600px; margin: auto;\">\n" +
-			"                <p>\n" +
-			"                        <strong>Você se cadastrou para a Copa dos Agasalhos :)</strong>\n" +
-			"                </p>\n" +
-			"                <p style=\"padding-bottom: 30px;\">\n" +
-			"                        Você foi escalado para a seleção: <strong> %s</strong>\n" +
-			"                </p>\n" +
-			"\n" +
-			"                <p>Quanlque dúvida entre em contato com seu técnico: %s</p>\n" +
-			"                <p>\n" +
-			"                        <strong>Boa copa!!!</strong>\n" +
-			"                </p>\n" +
-			"        </div>\n" +
-			"</body>";
-
 	private final PlayerRepository repository;
 
 	private final PlayerTraslator traslator;
@@ -35,12 +23,16 @@ public class PlayerService {
 
 	private final MailService mailService;
 
+	private final BalanceTeamService balanceTeamService;
+
 	public PlayerService(PlayerRepository repository, PlayerTraslator traslator, PlayerDTOTranslator dtoTranslator,
-			MailService mailService) {
+			MailService mailService,
+			BalanceTeamService balanceTeamService) {
 		this.repository = repository;
 		this.traslator = traslator;
 		this.dtoTranslator = dtoTranslator;
 		this.mailService = mailService;
+		this.balanceTeamService = balanceTeamService;
 	}
 
 	public PlayerDTO create(PlayerDTO dto) {
@@ -58,14 +50,16 @@ public class PlayerService {
 		return repository.findByHash(hash);
 	}
 
-	public void notifyPlayersRemote(){
-		System.out.println(repository.findByRemoteIsTrue().size());
+	public void notifyPlayersRemote() {
+		repository.findByRemoteIsTrue().forEach(player -> {
+			final Optional<BalanceTeamDTO> currentScore = balanceTeamService.getCurrentScore(player.getTeam());
+			mailService.send(EmailPlayerRemoteNotification.of(player, currentScore));
+		});
 	}
 
 	private void sendMailNew(Player player) {
 		if (player.getRemote()) {
-			final String template = String.format(TEMPLATE_BASE_NEW, player.getTeam().getName(), player.getName());
-			mailService.send(template, player.getEmail());
+			mailService.send(EmailNewPlayerRemote.of(player));
 		}
 	}
 
