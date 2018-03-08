@@ -4,10 +4,8 @@ echo "   *** NPM INSTALL ***"
 npm install
 echo "  *** NG BUILD ***"
 ng build --prod
-echo "   *** BUILD AND RUN DOCKER CONTAINER ***"
-docker stop warmersmobile
-docker rm warmersmobile
-docker rmi db1/warmersmobile
-docker build -t db1/warmersmobile .
-docker run -d -p 8086:80 --name warmersmobile db1/warmersmobile
-echo "   ***  FINISHED  ***"
+echo "   *** BUILD AND PUSH DOCKER CONTAINER ***"
+docker login
+docker rmi mkacunha/warmersmobile
+docker build -t mkacunha/warmersmobile .
+docker push mkacunha/warmersmobile
