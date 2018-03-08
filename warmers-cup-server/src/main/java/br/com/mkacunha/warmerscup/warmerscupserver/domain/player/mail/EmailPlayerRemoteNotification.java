@@ -13,7 +13,7 @@ public class EmailPlayerRemoteNotification implements Mail {
 	private static final String TEMPLATE_BASE_NOTIFICATION = "<body>\n" +
 			"        <div style=\"width: 600px; margin: auto;\">\n" +
 			"                <p>\n" +
-			"                        <strong>Boletim da Copa do Agasalho</strong>\n" +
+			"                        <strong>Boletim da Copa do Agasalho da DB1 Global Software</strong>\n" +
 			"                </p>\n" +
 			"                <p style=\"padding-bottom: 30px;\">\n" +
 			"                        Sua seleção: <strong> %s</strong>\n" +
@@ -54,7 +54,7 @@ public class EmailPlayerRemoteNotification implements Mail {
 	public String getEmailBody() {
 		final String team = player.getTeam().getName();
 		final String coach = player.getTeam().getCoach();
-		Integer ranking = 0;
+		Integer ranking = 10;
 		Integer totalPoints = 0;
 		if (balanceTeamDTOOptional.isPresent()) {
 			final BalanceTeamDTO balanceTeamDTO = balanceTeamDTOOptional.get();
