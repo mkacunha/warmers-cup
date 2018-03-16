@@ -86,12 +86,12 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   private showResult() {
-    this.changeBackground('../assets/images/result.jpeg');
+    this.changeBackground('../assets/images/result.jpg');
     Observable.timer(5000).take(1).subscribe(() => this.showInput());
   }
 
   private showNoHaveScore() {
-    this.changeBackground('../assets/images/wihtout-score.jpeg');
+    this.changeBackground('../assets/images/wihtout-score.jpg');
     Observable.timer(5000).take(1).subscribe(() => this.showInput());
   }
 
