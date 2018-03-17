@@ -8,3 +8,15 @@
 
 
 <h1 *ngIf="isShowTeam" class="player-name">{{data.player.name}}</h1>
+
+<section *ngIf="isShowResult" class="result-container">
+    <h1>Ranking:
+        <span>{{data.balanceTeam.ranking}}°</span>
+    </h1>
+    <h1>Pontos:
+        <span>{{data.balanceTeam.totalPoints}}</span>
+    </h1>
+    <h1>Quantidade de doações:
+        <span>{{data.balanceTeam.amount}}</span>
+    </h1>
+</section>

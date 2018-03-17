@@ -20,9 +20,10 @@
 
 .player-name {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
-    color: black;
+    bottom: 0px;
+    right: 30px;
+    font-weight: bold;
+    font-size: 60px;
 }
 
 .coach-label {
@@ -49,4 +50,19 @@
     text-align: center;
     font-weight: bold;
     font-size: 25px;
+}
+
+.result-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    padding-top: 8%;
+}
+
+.result-container>h1>span {
+    font-size: 83px;
+    color: black;
+    font-weight: bold;
+    margin-left: 15px;
 }

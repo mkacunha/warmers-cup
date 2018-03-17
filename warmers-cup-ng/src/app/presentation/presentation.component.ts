@@ -19,6 +19,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
   isInitInput = false;
   isSelectTeam = false;
   isShowTeam = false;
+  isShowResult = false;
 
   private body: any;
 
@@ -75,6 +76,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   private initObservableShowTeam() {
     Observable.timer(5000).take(1).subscribe(() => {
+      this.isShowTeam = false;
       if (this.data.first) {
         this.showInput();
       } else if (this.data.existsScore) {
@@ -86,19 +88,21 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   private showResult() {
+    this.isShowResult = true;
     this.changeBackground('../assets/images/result.jpg');
     Observable.timer(5000).take(1).subscribe(() => this.showInput());
   }
 
   private showNoHaveScore() {
     this.changeBackground('../assets/images/wihtout-score.jpg');
-    Observable.timer(5000).take(1).subscribe(() => this.showInput());
+    Observable.timer(6500).take(1).subscribe(() => this.showInput());
   }
 
   private showInput() {
     this.isShowTeam = false;
     this.isShowInput = true;
     this.isInitInput = false;
+    this.isShowResult = false;
     this.hash = '';
     this.data = {};
     this.inputFocus();
@@ -121,6 +125,6 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   private showError() {
     this.changeBackground('../assets/images/error.gif');
-    Observable.timer(5000).take(1).subscribe(() => this.showInput());
+    Observable.timer(8000).take(1).subscribe(() => this.showInput());
   }
 }
