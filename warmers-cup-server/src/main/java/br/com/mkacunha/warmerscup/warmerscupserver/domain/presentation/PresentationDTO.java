@@ -1,78 +1,82 @@
 package br.com.mkacunha.warmerscup.warmerscupserver.domain.presentation;
 
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.player.PlayerDTO;
+import br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.dto.BalanceDTO;
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.score.balance.dto.BalanceTeamDTO;
 import br.com.mkacunha.warmerscup.warmerscupserver.domain.team.TeamDTO;
 
 public class PresentationDTO {
 
-    private boolean first = false;
+	private boolean first = false;
 
-    private boolean existsScore = false;
+	private boolean existsScore = false;
 
-    private TeamDTO team;
+	private TeamDTO team;
 
-    private PlayerDTO player;
+	private PlayerDTO player;
 
-    private BalanceTeamDTO balanceTeam;
+	private BalanceTeamDTO balanceTeam;
 
-    public PresentationDTO(TeamDTO team, PlayerDTO player) {
-        this.team = team;
-        this.player = player;
-    }
+	private BalanceDTO balanceTeams;
 
-    public PresentationDTO(boolean first, TeamDTO team, PlayerDTO player) {
-        this.first = first;
-        this.team = team;
-        this.player = player;
-    }
+	public PresentationDTO(TeamDTO team, PlayerDTO player, BalanceDTO balanceTeams) {
+		this.team = team;
+		this.player = player;
+		this.balanceTeams = balanceTeams;
+	}
 
-    public static PresentationDTO of(TeamDTO team, PlayerDTO player) {
-        return new PresentationDTO(team, player);
-    }
+	public PresentationDTO(boolean first, TeamDTO team, PlayerDTO player) {
+		this.first = first;
+		this.team = team;
+		this.player = player;
+	}
 
-    public static PresentationDTO ofFirst(TeamDTO team, PlayerDTO player) {
-        return new PresentationDTO(true, team, player);
-    }
+	public static PresentationDTO of(TeamDTO team, PlayerDTO player, BalanceDTO balanceTeams) {
+		return new PresentationDTO(team, player, balanceTeams);
+	}
 
-    public boolean isFirst() {
-        return first;
-    }
+	public static PresentationDTO ofFirst(TeamDTO team, PlayerDTO player) {
+		return new PresentationDTO(true, team, player);
+	}
 
-    public void setFirst(boolean first) {
-        this.first = first;
-    }
+	public boolean isFirst() {
+		return first;
+	}
 
-    public boolean isExistsScore() {
-        return existsScore;
-    }
+	public void setFirst(boolean first) {
+		this.first = first;
+	}
 
-    public void setExistsScore(boolean existsScore) {
-        this.existsScore = existsScore;
-    }
+	public boolean isExistsScore() {
+		return existsScore;
+	}
 
-    public TeamDTO getTeam() {
-        return team;
-    }
+	public void setExistsScore(boolean existsScore) {
+		this.existsScore = existsScore;
+	}
 
-    public void setTeam(TeamDTO team) {
-        this.team = team;
-    }
+	public TeamDTO getTeam() {
+		return team;
+	}
 
-    public PlayerDTO getPlayer() {
-        return player;
-    }
+	public void setTeam(TeamDTO team) {
+		this.team = team;
+	}
 
-    public void setPlayer(PlayerDTO player) {
-        this.player = player;
-    }
+	public PlayerDTO getPlayer() {
+		return player;
+	}
 
-    public BalanceTeamDTO getBalanceTeam() {
-        return balanceTeam;
-    }
+	public void setPlayer(PlayerDTO player) {
+		this.player = player;
+	}
 
-    public void setBalanceTeam(BalanceTeamDTO balanceTeam) {
-        this.balanceTeam = balanceTeam;
-        this.existsScore = true;
-    }
+	public BalanceTeamDTO getBalanceTeam() {
+		return balanceTeam;
+	}
+
+	public void setBalanceTeam(BalanceTeamDTO balanceTeam) {
+		this.balanceTeam = balanceTeam;
+		this.existsScore = true;
+	}
 }
