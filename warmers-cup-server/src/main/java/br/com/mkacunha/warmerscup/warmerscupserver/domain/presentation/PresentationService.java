@@ -47,8 +47,6 @@ public class PresentationService {
 			PlayerDTO playerDTO = playerTraslator.apply(player);
 			final BalanceDTO balanceTeams = balanceTeamService.getAllAsDTO();
 			PresentationDTO presentationDTO = PresentationDTO.of(teamDTO, playerDTO, balanceTeams);
-			balanceTeamService.getCurrentScore(player.getTeam())
-							  .ifPresent(balanceTeamDTO -> presentationDTO.setBalanceTeam(balanceTeamDTO));
 			return presentationDTO;
 		}
 		return createPlayerWithTeam.get(hash);

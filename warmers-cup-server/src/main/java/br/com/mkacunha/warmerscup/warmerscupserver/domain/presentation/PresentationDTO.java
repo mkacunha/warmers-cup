@@ -23,6 +23,8 @@ public class PresentationDTO {
 		this.team = team;
 		this.player = player;
 		this.balanceTeams = balanceTeams;
+		this.balanceTeams.getBalanceSheetsTeam().stream().filter(bl -> bl.getTeam().getId().equals(team.getId()))
+						 .findFirst().ifPresent(balanceTeamDTO -> this.setBalanceTeam(balanceTeamDTO));
 	}
 
 	public PresentationDTO(boolean first, TeamDTO team, PlayerDTO player) {
@@ -78,5 +80,13 @@ public class PresentationDTO {
 	public void setBalanceTeam(BalanceTeamDTO balanceTeam) {
 		this.balanceTeam = balanceTeam;
 		this.existsScore = true;
+	}
+
+	public BalanceDTO getBalanceTeams() {
+		return balanceTeams;
+	}
+
+	public void setBalanceTeams(BalanceDTO balanceTeams) {
+		this.balanceTeams = balanceTeams;
 	}
 }

@@ -1,14 +1,20 @@
 import { PresentationService } from './presentation.service';
-import { Component, OnInit, ViewChild, HostListener, ElementRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  HostListener,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-presentation',
   templateUrl: './presentation.component.html',
-  styleUrls: ['./presentation.component.css']
+  styleUrls: ['./presentation.component.css'],
 })
 export class PresentationComponent implements OnInit, OnDestroy {
-
   @ViewChild('inputHash') inputHash;
   @ViewChild('teamGif') teamGif: ElementRef;
 
@@ -23,9 +29,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   private body: any;
 
-  constructor(private _service: PresentationService) {
-
-  }
+  constructor(private _service: PresentationService) {}
 
   ngOnInit() {
     this.body = document.getElementsByTagName('body')[0];
@@ -41,6 +45,20 @@ export class PresentationComponent implements OnInit, OnDestroy {
     this.initObservableInput();
   }
 
+  ranking(): any[] {
+    if (
+      this.data &&
+      this.data.balanceTeams &&
+      this.data.balanceTeams.balanceSheetsTeam
+    ) {
+      return this.data.balanceTeams.balanceSheetsTeam.sort(
+        (a, b) => (a.ranking > b.ranking ? 1 : a.ranking > b.ranking ? -1 : 0),
+      );
+    }
+
+    return [];
+  }
+
   private inputFocus() {
     this.inputHash.nativeElement.focus();
   }
@@ -48,8 +66,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
   private initObservableInput() {
     if (!this.isInitInput && this.isShowInput) {
       this.isInitInput = true;
-      Observable
-        .timer(1000)
+      Observable.timer(1000)
         .take(1)
         .subscribe(() => this.selectTeam());
     }
@@ -61,9 +78,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
     this._service
       .selectTeam(this.hash)
       .take(1)
-      .subscribe(
-        res => this.showTeam(res),
-        () => this.showError());
+      .subscribe(res => this.showTeam(res), () => this.showError());
   }
 
   private showTeam(res: any) {
@@ -75,27 +90,34 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   private initObservableShowTeam() {
-    Observable.timer(5000).take(1).subscribe(() => {
-      this.isShowTeam = false;
-      if (this.data.first) {
-        this.showInput();
-      } else if (this.data.existsScore) {
-        this.showResult();
-      } else {
-        this.showNoHaveScore();
-      }
-    });
+    const time = this.data.first ? 5000 : 3000;
+    Observable.timer(time)
+      .take(1)
+      .subscribe(() => {
+        this.isShowTeam = false;
+        if (this.data.first) {
+          this.showInput();
+        } else if (this.data.existsScore) {
+          this.showResult();
+        } else {
+          this.showNoHaveScore();
+        }
+      });
   }
 
   private showResult() {
     this.isShowResult = true;
     this.changeBackground('../assets/images/result.jpg');
-    Observable.timer(5000).take(1).subscribe(() => this.showInput());
+    Observable.timer(6000)
+      .take(1)
+      .subscribe(() => this.showInput());
   }
 
   private showNoHaveScore() {
     this.changeBackground('../assets/images/wihtout-score.jpg');
-    Observable.timer(6500).take(1).subscribe(() => this.showInput());
+    Observable.timer(5000)
+      .take(1)
+      .subscribe(() => this.showInput());
   }
 
   private showInput() {
@@ -125,6 +147,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   private showError() {
     this.changeBackground('../assets/images/error.gif');
-    Observable.timer(8000).take(1).subscribe(() => this.showInput());
+    Observable.timer(8000)
+      .take(1)
+      .subscribe(() => this.showInput());
   }
 }

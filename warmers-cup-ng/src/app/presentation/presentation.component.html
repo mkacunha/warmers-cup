@@ -10,13 +10,22 @@
 <h1 *ngIf="isShowTeam" class="player-name">{{data.player.name}}</h1>
 
 <section *ngIf="isShowResult" class="result-container">
-    <h1>Ranking:
-        <span>{{data.balanceTeam.ranking}}°</span>
-    </h1>
-    <h1>Pontos:
-        <span>{{data.balanceTeam.totalPoints}}</span>
-    </h1>
-    <h1>Quantidade de doações:
-        <span>{{data.balanceTeam.amount}}</span>
-    </h1>
+    <h3>Ranking</h3>
+    <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp with-100">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Posição</th>
+                <th class="mdl-data-table__cell--non-numeric">Seleção</th>
+                <th>Total de pontos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of ranking()" [ngClass]="{'may-item': item.team.id === data.team.id}">
+                <td class="mdl-data-table__cell--non-numeric">{{item.ranking}}º</td>
+                <td class="mdl-data-table__cell--non-numeric">{{item.team.name}}</td>
+                <td *ngIf="item.team.id === data.team.id">{{item.totalPoints}}</td>
+                <td *ngIf="item.team.id !== data.team.id"></td>
+            </tr>
+        </tbody>
+    </table>
 </section>
