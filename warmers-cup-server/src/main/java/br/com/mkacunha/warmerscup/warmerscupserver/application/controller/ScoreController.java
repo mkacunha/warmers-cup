@@ -38,4 +38,19 @@ public class ScoreController {
     public ResponseEntity getAllCountsByTeam() {
         return ResponseEntity.accepted().body(balanceTeamService.getAllAsDTO());
     }
+
+    @GetMapping("ranking")
+    public ResponseEntity getRankingTeams() {
+        return ResponseEntity.accepted().body(scoreService.getRanking());
+    }
+
+    @GetMapping("total-ac")
+    public ResponseEntity totalWithAcumullator() {
+        return ResponseEntity.accepted().body(scoreService.getTotalWithAccumulator());
+    }
+
+    @GetMapping("total")
+    public ResponseEntity total() {
+        return ResponseEntity.accepted().body(scoreService.getTotal());
+    }
 }

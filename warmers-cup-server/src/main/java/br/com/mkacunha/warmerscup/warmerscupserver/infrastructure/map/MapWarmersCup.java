@@ -16,7 +16,7 @@ public class MapWarmersCup<K, V> {
         return this.put(key, value.get());
     }
 
-    public V put(K key, V value) {
+    private V put(K key, V value) {
         this.map.put(key, value);
         return value;
     }
