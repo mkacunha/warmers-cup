@@ -13,9 +13,9 @@ public class ScoreAccumulatorReduce implements BiFunction<LinkedHashMap<String, 
 
     @Override
     public LinkedHashMap<String, Integer> apply(LinkedHashMap<String, Integer> acc, AbstractMap.SimpleEntry<String, Integer> entry) {
-        System.out.println("ScoreAccumulatorReduce Thread -> " + Thread.currentThread().getName());
-        acc.compute(entry.getKey(), (k, v) -> nonNull(v) ? entry.getValue() + v : entry.getValue());
-        return acc;
+        LinkedHashMap<String, Integer> result = new LinkedHashMap<>(acc);
+        result.compute(entry.getKey(), (k, v) -> nonNull(v) ? entry.getValue() + v : entry.getValue());
+        return result;
     }
 
 }

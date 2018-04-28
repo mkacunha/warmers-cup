@@ -51,18 +51,6 @@ public class ScoreService {
                 .reduce(new LinkedHashMap<>(), new ScoreAccumulatorReduce(), new ScoreCombinerReduce());
     }
 
-    public LinkedHashMap<String, Integer> getRankingSimplified() {
-        return repository
-                .findAll()
-                .parallelStream()
-                .map(score -> new AbstractMap.SimpleEntry<>(score.getTeam().getName(), score.getTotalPoints()))
-                .sorted(Comparator.comparing(AbstractMap.SimpleEntry::getKey))
-                .reduce(new LinkedHashMap<>(), (acc, entry) -> {
-                    acc.compute(entry.getKey(), (k, v) -> nonNull(v) ? entry.getValue() + v : entry.getValue());
-                    return acc;
-                }, (m1, m2) -> m1);
-    }
-
     public Integer getTotalWithAccumulator(){
         return repository
                 .findAll()
